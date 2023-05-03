@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDSC TODO LIST</title>
+    <script src="script.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f4f6;
+      }
+      .tasks-container {
+        width: 100%;
+        padding: 2rem 11rem;
+      }
+      .task {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .task-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 2rem 0;
+      }
+      .input-task {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .style-input {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 40%;
+      }
+      .label {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+      .button-add {
+        margin-top: 5px;
+        background-color: #4caf50;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .button-add:hover {
+        background-color: #3e8e41;
+      }
+      .button-delete {
+        background-color: #f44336;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+      .button-delete:hover {
+        background-color: #da190b;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 align="center">GDSC TODO LIST</h1>
+      <div class="task-form">
+        <div class="style-input">
+          <label class="label">Titre</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="faire la vaisselle"
+            class="input-task"
+          />
+        </div>
+        <div class="style-input">
+          <label class="label">Contenu</label>
+          <input
+            type="text"
+            id="body"
+            placeholder="faire la vaisselle avant minuit"
+            class="input-task"
+          />
+        </div>
+        <button class="button-add" onclick="addTask()">Ajouter la tache</button>
+      </div>
+      <div class="tasks-container"></div>
+    </div>
+  </body>
+</html>

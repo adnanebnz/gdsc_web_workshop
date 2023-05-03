@@ -1,0 +1,48 @@
+const displayTasks = async () => {
+  const data = await fetch("http://localhost:8800/tasks");
+  const tasks = await data.json();
+  console.log(tasks);
+  const tasksContainer = document.querySelector(".tasks-container");
+  tasks.map((task) => {
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("task");
+    taskDiv.innerHTML = `
+        <h3>${task.title}</h3>
+        <p>${task.body}</p>
+        <button class="button-delete">Supprimer la tache</button>
+        `;
+    //button supprimer
+    const deleteButton = taskDiv.querySelector(".button-delete");
+    deleteButton.onclick = () => {
+      deleteTask(task._id);
+    };
+    tasksContainer.appendChild(taskDiv);
+  });
+};
+
+const deleteTask = async (id) => {
+  const data = await fetch(`http://localhost:8800/tasks/${id}`, {
+    method: "DELETE",
+  });
+  const response = await data.json();
+  console.log(response);
+  location.reload();
+};
+
+const addTask = async (e) => {
+  console.log(e);
+  const title = document.querySelector("#title").value;
+  const body = document.querySelector("#body").value;
+  const data = await fetch("http://localhost:8800/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, body }),
+  });
+  const response = await data.json();
+  console.log(response);
+  location.reload();
+};
+
+displayTasks();

@@ -33,7 +33,7 @@ app.get("/tasks", async (req, res) => {
     if (tasks.length > 0) {
       res.status(200).json(tasks);
     } else {
-      res.status(404).json({ message: "aucune tache trouvée" });
+      res.status(200).json({ message: "aucune tache trouvée" });
     }
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -41,18 +41,18 @@ app.get("/tasks", async (req, res) => {
 });
 
 // REQUETE GET POUR RECUPERER UNE TACHE PAR SON ID
-app.get("/tasks/:id", async (req, res) => {
-  try {
-    const task = await Task.findById(req.params.id);
-    if (task) {
-      res.status(200).json(task);
-    } else {
-      res.status(404).json({ message: "tache non trouvée" });
-    }
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-});
+// app.get("/tasks/:id", async (req, res) => {
+//   try {
+//     const task = await Task.findById(req.params.id);
+//     if (task) {
+//       res.status(200).json(task);
+//     } else {
+//       res.status(404).json({ message: "tache non trouvée" });
+//     }
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// });
 
 // REQUETE POST POUR AJOUTER UNE TACHE
 app.post("/tasks", async (req, res) => {

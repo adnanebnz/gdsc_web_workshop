@@ -3,21 +3,30 @@ const displayTasks = async () => {
   const tasks = await data.json();
   console.log(tasks);
   const tasksContainer = document.querySelector(".tasks-container");
-  tasks.map((task) => {
-    const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task");
-    taskDiv.innerHTML = `
+  if (tasks.length > 0) {
+    tasks.map((task) => {
+      const taskDiv = document.createElement("div");
+      taskDiv.classList.add("task");
+      taskDiv.innerHTML = `
         <h3>${task.title}</h3>
         <p>${task.body}</p>
         <button class="button-delete">Supprimer la tache</button>
         `;
-    //button supprimer
-    const deleteButton = taskDiv.querySelector(".button-delete");
-    deleteButton.onclick = () => {
-      deleteTask(task._id);
-    };
+      //button supprimer
+      const deleteButton = taskDiv.querySelector(".button-delete");
+      deleteButton.onclick = () => {
+        deleteTask(task._id);
+      };
+      tasksContainer.appendChild(taskDiv);
+    });
+  } else {
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("task");
+    taskDiv.innerHTML = `
+        <h3>Aucune tache trouvée</h3>
+        `;
     tasksContainer.appendChild(taskDiv);
-  });
+  }
 };
 
 const deleteTask = async (id) => {

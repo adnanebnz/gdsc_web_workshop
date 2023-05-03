@@ -38,8 +38,7 @@ const deleteTask = async (id) => {
   location.reload();
 };
 
-const addTask = async (e) => {
-  console.log(e);
+const addTask = async () => {
   const title = document.querySelector("#title").value;
   const body = document.querySelector("#body").value;
   const data = await fetch("http://localhost:8800/tasks", {

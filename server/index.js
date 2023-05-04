@@ -54,11 +54,26 @@ app.get("/tasks", async (req, res) => {
 //   }
 // });
 
+// REQUETE PUT POUR MODIFIER UNE TACHE
+app.put("/tasks/:id", async (req, res) => {
+  try {
+    await Task.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      body: req.body.body,
+      isDone: req.body.isDone,
+    });
+    res.status(200).json({ message: "tache modifiée" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
 // REQUETE POST POUR AJOUTER UNE TACHE
 app.post("/tasks", async (req, res) => {
   const task = new Task({
     title: req.body.title,
     body: req.body.body,
+    isDone: req.body.isDone,
   });
   try {
     const savedTask = await task.save();
